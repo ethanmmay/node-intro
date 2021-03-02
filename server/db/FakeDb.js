@@ -14,9 +14,16 @@ export const FakeDb = {
 
     ],
 
-    burgers: [
+    dogs: [
         {
-            name: "Whopper"
+            id: 0,
+            name: "Skipper",
+            color: "Dalmatian"
+        },
+        {
+            id: 1,
+            name: "Davie",
+            color: "Golden Retriever"
         }
     ]
 }
