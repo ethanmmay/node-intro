@@ -12,22 +12,28 @@ class CatsService {
     }
 
     release(id) {
+        findCat(id)
         FakeDb.cats = FakeDb.cats.filter(c => c.id != id)
     }
 
     edit(editedCat, id) {
-        let foundCat = FakeDb.cats.find(c=> c.id == id)
-        if (!foundCat) {
-            throw new Error("Invalid Cat ID on catsService.edit(editedCat, id)")
-        }
-        Object.keys(editedCat).forEach(key => { // Changes Cat in DB's keys to editedCat's keys
+        const foundCat = findCat(id)
+        Object.keys(editedCat).forEach(key => {
             foundCat[key] = editedCat[key]
         })
+        return foundCat
     }
 
     getOne(id) {
-        return FakeDb.cats.find(c => c.id == id)
+        const foundCat = findCat(id)
+        return foundCat
     }
+}
+
+function findCat(id) {
+    let foundCat = FakeDb.cats.find(c => c.id == id)
+    if (!foundCat) { throw new Error("invalid id") }
+    return foundCat
 }
 
 export const catsService = new CatsService()
